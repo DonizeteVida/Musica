@@ -3,5 +3,5 @@ package com.any.musica.data.android
 import android.database.Cursor
 
 interface ContentResolverQuery {
-    fun getMusicCursor(): Cursor?
+    suspend fun getMusicCursor(): Cursor?
 }

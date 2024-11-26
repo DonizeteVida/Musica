@@ -9,7 +9,7 @@ import javax.inject.Inject
 class MusicRepositoryImpl @Inject constructor(
     private val contentResolverQuery: ContentResolverQuery
 ) : MusicRepository {
-    override fun getAll() = buildList {
+    override suspend fun getAll() = buildList {
         val cursor = contentResolverQuery.getMusicCursor() ?: return@buildList
         val id = cursor.getColumnIndex(MediaStore.Audio.AudioColumns._ID)
 

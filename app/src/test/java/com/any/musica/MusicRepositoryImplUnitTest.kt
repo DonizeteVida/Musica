@@ -5,6 +5,7 @@ import android.provider.MediaStore
 import com.any.musica.data.android.ContentResolverQuery
 import com.any.musica.data.repository.MusicRepositoryImpl
 import com.any.musica.domain.model.Music
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.kotlin.doReturn
@@ -20,14 +21,14 @@ class MusicRepositoryImplUnitTest {
     }
 
     @Test
-    fun `it parses a single cursor row`() {
+    fun `it parses a single cursor row`() = runTest {
         val cursor = mock<Cursor> {
             on { moveToNext() } doReturn true doReturn false
             on { getColumnIndex(ID) } doReturn ID_COLUMN
             on { getString(ID_COLUMN) } doReturn FAKE_URI
         }
         val contentResolverQuery = mock<ContentResolverQuery> {
-            on { getMusicCursor() } doReturn cursor
+            onBlocking { getMusicCursor() } doReturn cursor
         }
         val target = MusicRepositoryImpl(contentResolverQuery)
 
