@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Musica</string>
+
+    <string name="main_bottom_home">Home</string>
+    <string name="main_bottom_search">Search</string>
+    <string name="main_bottom_library">Library</string>
 </resources>
