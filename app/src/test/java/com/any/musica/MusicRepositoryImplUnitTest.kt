@@ -18,7 +18,10 @@ class MusicRepositoryImplUnitTest {
     companion object {
         const val ID = MediaStore.Audio.AudioColumns._ID
         const val ID_COLUMN = 1
-        const val FAKE_URI = "content://my_music"
+        const val FAKE_ID = 42L
+        const val DISPLAY_NAME = MediaStore.Audio.AudioColumns.DISPLAY_NAME
+        const val DISPLAY_NAME_COLUMN = 2
+        const val FAKE_DISPLAY_NAME = "my_file.mp3"
     }
 
     @Test
@@ -26,7 +29,9 @@ class MusicRepositoryImplUnitTest {
         val cursor = mock<Cursor> {
             on { moveToNext() } doReturn true doReturn false
             on { getColumnIndex(ID) } doReturn ID_COLUMN
-            on { getString(ID_COLUMN) } doReturn FAKE_URI
+            on { getLong(ID_COLUMN) } doReturn FAKE_ID
+            on { getColumnIndex(DISPLAY_NAME) } doReturn DISPLAY_NAME_COLUMN
+            on { getString(DISPLAY_NAME_COLUMN) } doReturn FAKE_DISPLAY_NAME
         }
         val contentResolverQuery = mock<ContentResolverQuery> {
             onBlocking { getMusicCursor() } doReturn cursor
@@ -34,12 +39,14 @@ class MusicRepositoryImplUnitTest {
         val target = MusicRepositoryImpl(contentResolverQuery)
 
         val actual = target.getAll().first()
-        val expected = Music(id = FAKE_URI)
+        val expected = Music(id = FAKE_ID, displayName = FAKE_DISPLAY_NAME)
         assertEquals(expected, actual)
 
         verify(cursor, times(2)).moveToNext()
         verify(cursor, times(1)).getColumnIndex(ID)
-        verify(cursor, times(1)).getString(ID_COLUMN)
+        verify(cursor, times(1)).getLong(ID_COLUMN)
+        verify(cursor, times(1)).getColumnIndex(DISPLAY_NAME)
+        verify(cursor, times(1)).getString(DISPLAY_NAME_COLUMN)
     }
 
     @Test
@@ -49,7 +56,9 @@ class MusicRepositoryImplUnitTest {
         val cursor = mock<Cursor> {
             on { moveToNext() } doReturnConsecutively List(n) { true } + false
             on { getColumnIndex(ID) } doReturn ID_COLUMN
-            on { getString(ID_COLUMN) } doReturnConsecutively List(n) { "$FAKE_URI$it" }
+            on { getLong(ID_COLUMN) } doReturnConsecutively List(n) { it * FAKE_ID }
+            on { getColumnIndex(DISPLAY_NAME) } doReturn DISPLAY_NAME_COLUMN
+            on { getString(DISPLAY_NAME_COLUMN) } doReturnConsecutively List(n) { "$FAKE_DISPLAY_NAME$it" }
         }
         val contentResolverQuery = mock<ContentResolverQuery> {
             onBlocking { getMusicCursor() } doReturn cursor
@@ -57,11 +66,13 @@ class MusicRepositoryImplUnitTest {
         val target = MusicRepositoryImpl(contentResolverQuery)
 
         val actual = target.getAll()
-        val expected = List(n) { Music(id = "$FAKE_URI$it") }
+        val expected = List(n) { Music(id = it * FAKE_ID, displayName = "$FAKE_DISPLAY_NAME$it") }
         assertEquals(expected, actual)
 
         verify(cursor, times(n + 1)).moveToNext()
         verify(cursor, times(1)).getColumnIndex(ID)
-        verify(cursor, times(n)).getString(ID_COLUMN)
+        verify(cursor, times(n)).getLong(ID_COLUMN)
+        verify(cursor, times(1)).getColumnIndex(DISPLAY_NAME)
+        verify(cursor, times(n)).getString(DISPLAY_NAME_COLUMN)
     }
 }

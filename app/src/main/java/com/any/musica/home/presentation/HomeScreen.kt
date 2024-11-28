@@ -26,7 +26,7 @@ private fun HomeScreen(
     }
     LazyColumn {
         items(state.musics) {
-            Text(it.id)
+            Text(it.displayName)
         }
     }
 }

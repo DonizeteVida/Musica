@@ -1,5 +1,6 @@
 package com.any.musica.common.data.repository
 
+import android.content.ContentUris
 import android.provider.MediaStore
 import com.any.musica.common.data.android.ContentResolverQuery
 import com.any.musica.common.domain.model.Music
@@ -12,9 +13,15 @@ class MusicRepositoryImpl @Inject constructor(
     override suspend fun getAll() = buildList {
         val cursor = contentResolverQuery.getMusicCursor() ?: return@buildList
         val id = cursor.getColumnIndex(MediaStore.Audio.AudioColumns._ID)
+        val name = cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DISPLAY_NAME)
 
         while (cursor.moveToNext()) {
-            add(Music(id = cursor.getString(id)))
+            add(
+                Music(
+                    id = cursor.getLong(id),
+                    displayName = cursor.getString(name)
+                )
+            )
         }
     }
 }
