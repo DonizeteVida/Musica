@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.navigation.compose)
 
     implementation(libs.kotlinx.serialization)
@@ -63,6 +64,8 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+
+    implementation(libs.bundles.media3)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
