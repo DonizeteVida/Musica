@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import com.any.musica.common.components.android.PermissionRequester
 
 @Composable
-fun MusicaRequestPermissions() {
+fun RequestPermissions() {
     PermissionRequester(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             listOf(

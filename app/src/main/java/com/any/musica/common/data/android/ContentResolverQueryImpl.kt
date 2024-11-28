@@ -8,13 +8,14 @@ import androidx.core.content.ContentResolverCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
+import kotlin.coroutines.resume
 
 class ContentResolverQueryImpl @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ContentResolverQuery {
-    override suspend fun getMusicCursor() = suspendCancellableCoroutine<Cursor?> {
+    override suspend fun getMusicCursor() = suspendCancellableCoroutine<Cursor?> { cont ->
         val signal = CancellationSignal()
-        it.invokeOnCancellation { signal.cancel() }
+        cont.invokeOnCancellation { signal.cancel() }
 
         val projection = arrayOf(
             MediaStore.Audio.AudioColumns.IS_MUSIC,
@@ -29,6 +30,6 @@ class ContentResolverQueryImpl @Inject constructor(
             null,
             null,
             signal
-        )
+        ).let(cont::resume)
     }
 }

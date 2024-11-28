@@ -54,9 +54,11 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.androidx.material.icons.extended)
-    implementation(libs.navigation.compose)
 
-    implementation(libs.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.hilt.runtime)
     ksp(libs.hilt.compiler)

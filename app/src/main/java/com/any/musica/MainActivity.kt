@@ -12,18 +12,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
-import com.any.musica.common.components.MusicaRequestPermissions
-import com.any.musica.common.components.navigation.bottom.BottomNavigationBar
-import com.any.musica.common.components.navigation.main.MainNavigationHost
+import com.any.musica.common.components.RequestPermissions
+import com.any.musica.common.navigation.bottom.BottomNavigationBar
+import com.any.musica.common.navigation.main.MainNavigationHost
 import com.any.musica.ui.theme.MusicaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MusicaTheme {
-                MusicaRequestPermissions()
+                RequestPermissions()
                 MainScreen()
             }
         }
