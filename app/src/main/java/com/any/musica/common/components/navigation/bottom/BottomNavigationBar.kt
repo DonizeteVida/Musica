@@ -1,4 +1,4 @@
-package com.any.musica.compose.navigation.bottom
+package com.any.musica.common.components.navigation.bottom
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -20,7 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.any.musica.R
-import com.any.musica.compose.navigation.main.MainDestiny
+import com.any.musica.common.components.navigation.main.MainDestiny
 
 sealed interface BottomNavigationBarItems {
 

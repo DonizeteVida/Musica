@@ -1,9 +1,9 @@
-package com.any.musica.data.repository
+package com.any.musica.common.data.repository
 
 import android.provider.MediaStore
-import com.any.musica.data.android.ContentResolverQuery
-import com.any.musica.domain.model.Music
-import com.any.musica.domain.repository.MusicRepository
+import com.any.musica.common.data.android.ContentResolverQuery
+import com.any.musica.common.domain.model.Music
+import com.any.musica.common.domain.repository.MusicRepository
 import javax.inject.Inject
 
 class MusicRepositoryImpl @Inject constructor(

@@ -1,4 +1,4 @@
-package com.any.musica.compose.navigation.main
+package com.any.musica.common.components.navigation.main
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

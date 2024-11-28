@@ -1,4 +1,4 @@
-package com.any.musica.compose.android
+package com.any.musica.common.components.android
 
 import android.content.Intent
 import android.net.Uri

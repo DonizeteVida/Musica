@@ -1,7 +1,7 @@
-package com.any.musica.di
+package com.any.musica.common.di
 
-import com.any.musica.data.repository.MusicRepositoryImpl
-import com.any.musica.domain.repository.MusicRepository
+import com.any.musica.common.data.repository.MusicRepositoryImpl
+import com.any.musica.common.domain.repository.MusicRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

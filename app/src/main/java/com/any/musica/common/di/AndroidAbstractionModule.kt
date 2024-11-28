@@ -1,7 +1,7 @@
-package com.any.musica.di
+package com.any.musica.common.di
 
-import com.any.musica.data.android.ContentResolverQuery
-import com.any.musica.data.android.ContentResolverQueryImpl
+import com.any.musica.common.data.android.ContentResolverQuery
+import com.any.musica.common.data.android.ContentResolverQueryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.any.musica.data.android
+package com.any.musica.common.data.android
 
 import android.database.Cursor
 

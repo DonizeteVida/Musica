@@ -2,9 +2,9 @@ package com.any.musica
 
 import android.database.Cursor
 import android.provider.MediaStore
-import com.any.musica.data.android.ContentResolverQuery
-import com.any.musica.data.repository.MusicRepositoryImpl
-import com.any.musica.domain.model.Music
+import com.any.musica.common.data.android.ContentResolverQuery
+import com.any.musica.common.data.repository.MusicRepositoryImpl
+import com.any.musica.common.domain.model.Music
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
